@@ -38,11 +38,8 @@ public class MoveGenerator {
 		System.out.println("displaying queue..:");
 		displayQueue();
 		System.out.println();
-		displayMoveOptions();
-		
+		displayMoveOptions();	
 	}
-
-	
 	
 	public class possibleMove{
 		int xLocation;

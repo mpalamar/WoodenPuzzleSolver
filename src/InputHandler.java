@@ -9,7 +9,7 @@ public class InputHandler {
 		prompt();
 		String input = keyboard.nextLine();
 		// Continuously ask for input until the input given represents a valid configuration
-		while (!ZachsClass.isValid(input)) {
+		while (!MoveGenerator.isValid(input)) {
 			prompt();
 			input = keyboard.nextLine();
 		}

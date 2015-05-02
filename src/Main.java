@@ -1,3 +1,18 @@
+/*
+ * CS 560 Wooden Puzzle Solver
+ * Spring 2015
+ * Professor Root
+ * SDSU
+ * 
+ * Authors:
+ * 
+ * Matt Palamar
+ * Nathan Adams
+ * Rodney Alacon
+ * Zach Ribera
+ * 
+ */
+
 import java.util.Stack;
 
 public class Main {

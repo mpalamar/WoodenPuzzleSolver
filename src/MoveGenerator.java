@@ -1,13 +1,14 @@
 import java.util.*;
+
 public class MoveGenerator {
 	
-	static char [][] board;
-	static char [][] currentConfig;
-	static char [] config = {'C', 'A','D', 'B', 'E', 'D', 'A', 'E', 'D', 'A', 'D', 'A'};
-	static final char [][] initialConfigBoard = generateGrid(config);
-	static boolean flag = false;
-	static Queue<possibleMove> queue;
-	static String initialConfig = "AADCBDEDEAAD";
+	private char [][] board;
+	private char [][] currentConfig;
+	private char [] config = {'C', 'A','D', 'B', 'E', 'D', 'A', 'E', 'D', 'A', 'D', 'A'};
+	private final char [][] initialConfigBoard = generateGrid(config);
+	private boolean flag = false;
+	private Queue<possibleMove> queue;
+	private String initialConfig = "AADCBDEDEAAD";
 	
 //	public static void main(String [] args){
 //		board = initialConfigBoard;
@@ -24,8 +25,26 @@ public class MoveGenerator {
 //		displayMoveOptions();
 //	}
 	
+	public MoveGenerator(String initialConfig) {
+		currentConfig = generateGrid(initialConfig.toCharArray());
+		board = initialConfigBoard;
+		currentConfig = initialConfigBoard;
+//		
+		queue = new LinkedList<possibleMove>();
+		
+		displayBoard(currentConfig);
+		int numb = generateNumberMovesPossible();
+		System.out.println(numb);
+		System.out.println("displaying queue..:");
+		displayQueue();
+		System.out.println();
+		displayMoveOptions();
+		
+	}
+
 	
-	public static class possibleMove{
+	
+	public class possibleMove{
 		int xLocation;
 		int yLocation;
 		String direction;
@@ -41,7 +60,7 @@ public class MoveGenerator {
 		}
 	}
 	
-	public static int generateNumberMovesPossible(){
+	public int generateNumberMovesPossible(){
 		char [][] a = currentConfig;
 		int [] eLocations = new int[4];
 		int eLocationCounter = 0;
@@ -116,7 +135,7 @@ public class MoveGenerator {
 		return numberMoves;
 	}
 	
-	public static char[][] generateGrid(char[] z) {
+	public char[][] generateGrid(char[] z) {
 		char[][] layout = new char[10][10];
 		
 		int x = 1;
@@ -154,7 +173,7 @@ public class MoveGenerator {
 	}
 		return layout;		
 }
-	public static String generateConfigString(char[][] a){
+	public String generateConfigString(char[][] a){
 		String config = "";
 		
 		for(int i = 1; i < 5; i++) {
@@ -179,7 +198,7 @@ public class MoveGenerator {
 	}
 	
 	
-	public static String getAdjacentELocation(int x, int y) {
+	public String getAdjacentELocation(int x, int y) {
 		if(board[x+1][y] == 'E')
 			return "BELOW";
 		else if(board[x][y-1] == 'E')
@@ -197,7 +216,7 @@ public class MoveGenerator {
 //		return moveCount;
 //	}
 	
-	public static char[][] movePiece(int x, int y, char[][] c, String dir){
+	public char[][] movePiece(int x, int y, char[][] c, String dir){
 		int directionX;
 		int directionY;
 		
@@ -254,14 +273,14 @@ public class MoveGenerator {
 //		return tempConfig;
 //	}
 	
-	public static int getCharPosition(char x) {
+	public int getCharPosition(char x) {
 		for(int i = 0; i < initialConfig.length(); i++)
 			if(initialConfig.charAt(i) == x)
 				return i;
 		return -1;
 	}
 	
-	public static int getWidth(char x){
+	public int getWidth(char x){
 		if(x == 'A')
 			return 2;
 		else if(x == 'B')
@@ -276,7 +295,7 @@ public class MoveGenerator {
 			return -1;
 	}
 	
-	public static int getHeight(char x){
+	public int getHeight(char x){
 		if(x == 'A')
 			return 1;
 		else if(x == 'B')
@@ -291,7 +310,7 @@ public class MoveGenerator {
 			return -1;
 	}
 	
-	public static char[][] copyOf(char[][] original) {
+	public char[][] copyOf(char[][] original) {
 		    int length = original.length;
 		    char[][] target = new char[length][original[0].length];
 		    for (int i = 0; i < length; i++) {
@@ -300,7 +319,7 @@ public class MoveGenerator {
 		    return target;
 	}
 	
-	public static void swap(int x, int y) {
+	public void swap(int x, int y) {
 		char[] c = initialConfig.toCharArray();
 
 		char temp = c[x];
@@ -311,7 +330,7 @@ public class MoveGenerator {
 	
 	
 	/******** Display ****/
-	public static void displayMoveOptions() {
+	public void displayMoveOptions() {
 		char[][] c = copyOf(initialConfigBoard);
 		
 		for(possibleMove x : queue) {
@@ -384,7 +403,7 @@ public class MoveGenerator {
 			}
 	}
 	
-	public static void displayBoard(char[][] x) {		
+	public void displayBoard(char[][] x) {		
 		for(int z = 1; z < 5; z++) {
 			for(int j = 1; j < 6; j++) {
 				System.out.print(x[z][j] + " ");
@@ -393,7 +412,7 @@ public class MoveGenerator {
 		}	
 	}
 	
-	public static void displayQueue(){
+	public void displayQueue(){
 		for(possibleMove x : queue){
 			System.out.println("Move piece at (" + x.xLocation + ", " + x.yLocation + ") " + x.direction);
 		}		

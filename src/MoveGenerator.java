@@ -34,10 +34,10 @@ public class MoveGenerator {
 		
 		displayBoard(currentConfig);
 		int numb = generateNumberMovesPossible();
-		System.out.println(numb);
-		System.out.println("displaying queue..:");
+//		System.out.println(numb);
+//		System.out.println("displaying queue..:");
 		displayQueue();
-		System.out.println();
+//		System.out.println();
 		displayMoveOptions();	
 	}
 	
